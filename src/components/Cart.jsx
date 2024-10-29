@@ -1,10 +1,10 @@
 import data from '../assets/data';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart } from '../redux/redux';
+import { cartSlice } from '../redux/redux';
 
 function Cart() {
-  const menu = useSelector((state) => state.menuReducer);
-  const cart = useSelector((state) => state.cartReducer);
+  const menu = useSelector((state) => state.menu);
+  const cart = useSelector((state) => state.cart);
 
   if (!menu) return <div style={{ textAlign: 'center', margin: '80px' }}> 메뉴 정보가 없어요!</div>;
   const allMenus = [...menu.커피, ...menu.논커피];
@@ -49,7 +49,7 @@ function CartItem({ item, options, quantity }) {
       <button
         className="cart-item-delete"
         onClick={() => {
-          dispatch(removeFromCart(item.id));
+          dispatch(cartSlice.actions.removeFromCart({ id: item.id }));
         }}
       >
         삭제

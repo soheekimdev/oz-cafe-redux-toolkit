@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import data from '../assets/data';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../redux/redux';
+import { cartSlice } from '../redux/redux';
 
 function OrderModal({ modalMenu, setModalOn }) {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function OrderModal({ modalMenu, setModalOn }) {
               </div>
               <button
                 onClick={() => {
-                  dispatch(addToCart(options, quantity, modalMenu.id));
+                  dispatch(cartSlice.actions.addToCart({ options, quantity, id: modalMenu.id }));
                   setModalOn(false);
                 }}
               >
